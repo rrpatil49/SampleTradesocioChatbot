@@ -40,6 +40,9 @@ function explodeKeyword($text)
 	 
 	if (strpos($text, 'summary') !== false)
 	  $curlURL = $domain."webservices_new/getbalance.php?keyworddetails=mysummary&profileID=$profileID&AccountID=".$AccountID;
+  
+	if (strpos($text, 'option') !== false)
+	  $curlURL = $domain."webservices_new/getbalance.php?text=".$text."&keyworddetails=setoption&profileID=$profileID&AccountID=".$AccountID;
 	
 	if (strpos($text, 'open') !== false)
 	  $curlURL = $domain."webservices_new/getbalance.php?keyworddetails=openposition&profileID=$profileID&AccountID=".$AccountID;
