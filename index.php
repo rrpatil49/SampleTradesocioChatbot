@@ -19,18 +19,22 @@ function explodeKeyword($text)
 	}
 	
 	$keyword  = "balance";
-	if($profileID ) $output=" Balance of your Profile # ".$profileID ." is $ 1020 ";
-	if($AccountID) $output=" Balance of your account # ".$AccountID ." is $ 1020 ";
-		
-		
-		
-		
+	 
+	$gettextArray = explode(" ",$text);
+	print_r($gettextArray);
+	
 	if (strpos($text, 'balance') !== false)
 	  $curlURL = $domain."webservices_new/getbalance.php?keyworddetails=balance&profileID=$profileID&AccountID=".$AccountID ;
 	 
 	if (strpos($text, 'equity') !== false)
 	  $curlURL = $domain."webservices_new/getbalance.php?keyworddetails=equity&profileID=$profileID&AccountID=".$AccountID ;
-	 
+  
+	if ( in_array("switch",$gettextArray) && in_array("account",$gettextArray)  )
+	  $curlURL = $domain."webservices_new/getbalance.php?keyworddetails=switchaccount&profileID=$profileID&AccountID=".$AccountID ;
+	
+	if ( in_array("change",$gettextArray) && in_array("account",$gettextArray)  )
+	  $curlURL = $domain."webservices_new/getbalance.php?keyworddetails=switchaccount&profileID=$profileID&AccountID=".$AccountID ;
+	
 	if (strpos($text, 'allocations') !== false && strpos($text, 'active') !== false)
 	  $curlURL = $domain."webservices_new/getbalance.php?keyworddetails=activeallocations&profileID=$profileID&AccountID=".$AccountID;
 	 
