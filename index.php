@@ -23,6 +23,7 @@ function explodeKeyword($text)
 	 
 	$gettextArray = explode(" ",$text);
 	//print_r($gettextArray);
+	echo $plain = "balance|".$profileID."|" .$AccountID;
 	
 	if (strpos($text, 'balance') !== false) {
 		$plain = "balance|".$profileID."|" .$AccountID;
@@ -138,9 +139,8 @@ function explodeKeyword($text)
 	curl_setopt($ch, CURLOPT_POST, TRUE);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 	curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-	$p_result = curl_exec($ch);
-	return $p_result;
-	exit();
+	echo $p_result = curl_exec($ch);
+	
 	if (FALSE === $p_result) {
 	throw new Exception(curl_error(), curl_errno());
 	curl_close($ch);
