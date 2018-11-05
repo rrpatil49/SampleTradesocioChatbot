@@ -1,4 +1,5 @@
 <?php 
+date_default_timezone_set('Asia/Kolkata');
 $method = $_SERVER['REQUEST_METHOD'];
 
 $text_temp = $_REQUEST['text_temp'];
