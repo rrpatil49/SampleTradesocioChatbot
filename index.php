@@ -7,7 +7,7 @@ function explodeKeyword($text)
 {
 	$getTxtArray = explode("==TSTEXT",$text);
 	$getBalanceArray = explode("::",$getTxtArray[1]);
-	$domain = "http://demosite3.fxsocio.com/getbalance_nilesh.php";
+	$domain = "http://demosite3.fxsocio.com/webservices_new/getbalance_nilesh.php";
 	if(in_array("profileID",$getBalanceArray)) 
 	{
 		$profileID = $getBalanceArray[2];
