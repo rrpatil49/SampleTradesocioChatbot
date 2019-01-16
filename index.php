@@ -175,7 +175,7 @@ if($method == 'POST'){
 	$text = $json->queryResult->queryText;
 	$keyword  = $text;
 	 
-	
+	echo $requestBody
 	switch ($keyword) 
 	{
 		 
