@@ -174,9 +174,9 @@ if($method == 'POST'){
 
 	$text = $json->queryResult->queryText;
 	$keyword  = $text;
-	 <?php
-   		echo '<script>console.log('.json_encode($keyword).')</script>';
-	?>
+
+	echo '<script>console.log('.json_encode($keyword).')</script>';
+
 
 	switch ($keyword) 
 	{
