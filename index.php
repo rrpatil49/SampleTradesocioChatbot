@@ -5,7 +5,9 @@ $method = $_SERVER['REQUEST_METHOD'];
 $text_temp = $_REQUEST['text_temp'];
 
 function explodeKeyword($text)
-{
+{	
+	echo $text;
+	exit;
 	$getTxtArray = explode("==TSTEXT",$text);
 	$getBalanceArray = explode("::",$getTxtArray[1]);
 	$domain = "http://newtc4.tradesocio.com/webservices_new/getbalance_nilesh.php";
@@ -175,7 +177,6 @@ if($method == 'POST'){
 	$text = $json->queryResult->queryText;
 	$keyword  = $text;
 
-	echo '<script>console.log('.json_encode($keyword).')</script>';
 
 
 	switch ($keyword) 
