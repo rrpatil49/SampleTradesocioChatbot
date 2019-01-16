@@ -32,8 +32,7 @@ function explodeKeyword($text)
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
 		$curlURL = $domain."?data=".$post;
-		echo $curlURL;
-		exit;
+		
 		//$curlURL = $domain."webservices_new/getbalance.php?keyworddetails=balance&profileID=$profileID&AccountID=".$AccountID ;
 	}	
 	 
