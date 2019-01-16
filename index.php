@@ -32,6 +32,8 @@ function explodeKeyword($text)
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
 		$curlURL = $domain."?data=".$post;
+		echo $curlURL;
+		exit;
 		//$curlURL = $domain."webservices_new/getbalance.php?keyworddetails=balance&profileID=$profileID&AccountID=".$AccountID ;
 	}	
 	 
@@ -137,8 +139,7 @@ function explodeKeyword($text)
 		if (FALSE === $ch){
 		throw new Exception('failed to initialize');
 	}
-	echo $curlURL;
-	exit;
+	
 	curl_setopt($ch, CURLOPT_URL,$curlURL );
 	curl_setopt($ch, CURLOPT_POST, TRUE);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
