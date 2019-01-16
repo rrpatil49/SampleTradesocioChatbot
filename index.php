@@ -6,8 +6,7 @@ $text_temp = $_REQUEST['text_temp'];
 
 function explodeKeyword($text)
 {	
-	echo $text;
-	exit;
+	
 	$getTxtArray = explode("==TSTEXT",$text);
 	$getBalanceArray = explode("::",$getTxtArray[1]);
 	$domain = "http://newtc4.tradesocio.com/webservices_new/getbalance_nilesh.php";
@@ -138,6 +137,8 @@ function explodeKeyword($text)
 		if (FALSE === $ch){
 		throw new Exception('failed to initialize');
 	}
+	echo $curlURL;
+	exit;
 	curl_setopt($ch, CURLOPT_URL,$curlURL );
 	curl_setopt($ch, CURLOPT_POST, TRUE);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
