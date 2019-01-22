@@ -1,5 +1,5 @@
 <?php 
-date_default_timezone_set('Asia/Kolkata');
+date_default_timezone_set('UTC');
 $method = $_SERVER['REQUEST_METHOD'];
 
 $text_temp = $_REQUEST['text_temp'];
@@ -9,7 +9,7 @@ function explodeKeyword($text)
 	
 	$getTxtArray = explode("==TSTEXT",$text);
 	$getBalanceArray = explode("::",$getTxtArray[1]);
-	$domain = "http://newtc4.tradesocio.com/webservices_new/getbalance_nilesh.php";
+	$domain = "https://app.fxsocio.com/webservices_new/getbalance_nilesh.php";
 	if(in_array("profileID",$getBalanceArray)) 
 	{
 		$profileID = $getBalanceArray[2];
@@ -24,7 +24,7 @@ function explodeKeyword($text)
 	$keyword  = "balance";
 	 
 	$gettextArray = explode(" ",$text);
-	//print_r($gettextArray);
+	
 	//echo $plain = "balance|".$profileID."|" .$AccountID;
 	
 	if (strpos($text, 'balance') !== false) {
@@ -33,7 +33,7 @@ function explodeKeyword($text)
 		$post = strtr($request, '+/=', '-_,' );
 		$curlURL = $domain."?data=".$post;
 		
-		//$curlURL = $domain."webservices_new/getbalance.php?keyworddetails=balance&profileID=$profileID&AccountID=".$AccountID ;
+		$curlURL = $domain."?keyworddetails=balance&profileID=$profileID&AccountID=".$AccountID ;
 	}	
 	 
 	if (strpos($text, 'equity') !== false){
@@ -41,7 +41,7 @@ function explodeKeyword($text)
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
 		$curlURL = $domain."?data=".$post;
-		//$curlURL = $domain."webservices_new/getbalance.php?keyworddetails=equity&profileID=$profileID&AccountID=".$AccountID ;
+		$curlURL = $domain."?keyworddetails=equity&profileID=$profileID&AccountID=".$AccountID ;
 	}	
   
 	if ( in_array("switch",$gettextArray) && in_array("account",$gettextArray)  ) {
@@ -49,7 +49,7 @@ function explodeKeyword($text)
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
 		$curlURL = $domain."?data=".$post;
-		//$curlURL = $domain."webservices_new/getbalance.php?keyworddetails=switchaccount&profileID=$profileID&AccountID=".$AccountID ;
+		$curlURL = $domain."?keyworddetails=switchaccount&profileID=$profileID&AccountID=".$AccountID ;
 	}	
 	
 	if ( in_array("change",$gettextArray) && in_array("account",$gettextArray)  ){
@@ -57,7 +57,7 @@ function explodeKeyword($text)
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
 		$curlURL = $domain."?data=".$post;
-	  //$curlURL = $domain."webservices_new/getbalance.php?keyworddetails=switchaccount&profileID=$profileID&AccountID=".$AccountID ;
+	  $curlURL = $domain."?keyworddetails=switchaccount&profileID=$profileID&AccountID=".$AccountID ;
 	}
 	
 	if (strpos($text, 'allocations') !== false && strpos($text, 'active') !== false){
@@ -65,7 +65,7 @@ function explodeKeyword($text)
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
 		$curlURL = $domain."?data=".$post;
-		//$curlURL = $domain."webservices_new/getbalance.php?keyworddetails=activeallocations&profileID=$profileID&AccountID=".$AccountID;
+		$curlURL = $domain."?keyworddetails=activeallocations&profileID=$profileID&AccountID=".$AccountID;
 	}	
 	 
 	if (strpos($text, 'summary') !== false) {
@@ -73,7 +73,7 @@ function explodeKeyword($text)
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
 		$curlURL = $domain."?data=".$post;
-		//$curlURL = $domain."webservices_new/getbalance.php?keyworddetails=mysummary&profileID=$profileID&AccountID=".$AccountID;
+		$curlURL = $domain."?keyworddetails=mysummary&profileID=$profileID&AccountID=".$AccountID;
 	}
   
 	if (strpos($text, 'option') !== false) {
@@ -81,7 +81,7 @@ function explodeKeyword($text)
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
 		$curlURL = $domain."?data=".$post;
-		//$curlURL = $domain."webservices_new/getbalance.php?text=".$text."&keyworddetails=setoption&profileID=$profileID&AccountID=".$AccountID;
+		$curlURL = $domain."?text=".$text."&keyworddetails=setoption&profileID=$profileID&AccountID=".$AccountID;
 	}
 	
 	if (strpos($text, 'open') !== false) {
@@ -89,7 +89,7 @@ function explodeKeyword($text)
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
 		$curlURL = $domain."?data=".$post;
-		//$curlURL = $domain."webservices_new/getbalance.php?keyworddetails=openposition&profileID=$profileID&AccountID=".$AccountID;
+		$curlURL = $domain."?keyworddetails=openposition&profileID=$profileID&AccountID=".$AccountID;
 	}	
 	
 	if (strpos($text, 'close') !== false) {
@@ -97,7 +97,7 @@ function explodeKeyword($text)
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
 		$curlURL = $domain."?data=".$post;
-		//$curlURL = $domain."webservices_new/getbalance.php?keyworddetails=closedposition&profileID=$profileID&AccountID=".$AccountID;
+		$curlURL = $domain."?keyworddetails=closedposition&profileID=$profileID&AccountID=".$AccountID;
 	}
 	
 	if (strpos($text, 'dd') !== false || strpos($text, 'drawdown') !== false){
@@ -105,7 +105,7 @@ function explodeKeyword($text)
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
 		$curlURL = $domain."?data=".$post;
-		//$curlURL = $domain."webservices_new/getbalance.php?keyworddetails=maxdd&profileID=$profileID&AccountID=".$AccountID;
+		$curlURL = $domain."?keyworddetails=maxdd&profileID=$profileID&AccountID=".$AccountID;
 	}	
 	
 	if (strpos($text, 'roi') !== false || strpos($text, 'return') !== false) {
@@ -113,7 +113,7 @@ function explodeKeyword($text)
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
 		$curlURL = $domain."?data=".$post;
-		//$curlURL = $domain."webservices_new/getbalance.php?keyworddetails=returnofinvestment&profileID=$profileID&AccountID=".$AccountID;
+		$curlURL = $domain."?keyworddetails=returnofinvestment&profileID=$profileID&AccountID=".$AccountID;
 	}	
 	
 	if (strpos($text, 'available') !== false && strpos($text, 'invested') !== false){
@@ -121,7 +121,7 @@ function explodeKeyword($text)
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
 		$curlURL = $domain."?data=".$post;
-		//$curlURL = $domain."webservices_new/getbalance.php?keyworddetails=availableinvested&profileID=$profileID&AccountID=".$AccountID;
+		$curlURL = $domain."?keyworddetails=availableinvested&profileID=$profileID&AccountID=".$AccountID;
 	}
 	
 	if (strpos($text, 'total') !== false && strpos($text, 'invested') !== false) {
@@ -129,7 +129,7 @@ function explodeKeyword($text)
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
 		$curlURL = $domain."?data=".$post;
-		//$curlURL = $domain."webservices_new/getbalance.php?keyworddetails=totalinvested&profileID=$profileID&AccountID=".$AccountID;
+		$curlURL = $domain."?keyworddetails=totalinvested&profileID=$profileID&AccountID=".$AccountID;
 	}	
 	
 	try
@@ -138,7 +138,7 @@ function explodeKeyword($text)
 		if (FALSE === $ch){
 		throw new Exception('failed to initialize');
 	}
-	
+	//print($curlURL);die;
 	curl_setopt($ch, CURLOPT_URL,$curlURL );
 	curl_setopt($ch, CURLOPT_POST, TRUE);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
@@ -157,6 +157,7 @@ function explodeKeyword($text)
 	$e->getMessage()),E_USER_ERROR); 
 	return $output ; 
 	}
+	
 }
 
 //STARTED ADDED FOR TESTING PURPOSE 
@@ -222,7 +223,7 @@ else
 # Encrypt a value using AES-256.
 function encrypts($plain, $key = null, $hmacSalt = null) {
 			
-	# Private salt
+	/*# Private salt
 	$salt = 'ZfTfbip&Gs0Z4yz3ZfTfbip&Gs0Z4yz3';
 	# Private key
 	$key =  'SDefrfdrghgfdfE)SDefrfdrghgfdfE)';
@@ -234,8 +235,8 @@ function encrypts($plain, $key = null, $hmacSalt = null) {
 	$ciphertext_raw = openssl_encrypt($plain, $cipher, $key, $options=OPENSSL_RAW_DATA, $iv);
 	$hmac = hash_hmac('sha256', $ciphertext_raw, $salt, $as_binary=true);
 	$ciphertext = base64_encode( $iv.$hmac.$ciphertext_raw );
- 
-	return  $ciphertext;
+ */
+	return  $plain;
 }
 
 
