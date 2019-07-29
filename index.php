@@ -27,15 +27,6 @@ function explodeKeyword($text)
 	
 	//echo $plain = "balance|".$profileID."|" .$AccountID;
 	
-	if (strpos($text, 'trading') !== false) {
-		$plain = "Tradesocio|".$profileID."|" .$AccountID;
-		$request = encrypts($plain);
-		$post = strtr($request, '+/=', '-_,' );
-		$curlURL = $domain."?data=".$post;
-		
-		$curlURL = $domain."?keyworddetails=Tradesocio&profileID=$profileID&AccountID=".$AccountID ;
-	}
-	
 	if (strpos($text, 'balance') !== false) {
 		$plain = "balance|".$profileID."|" .$AccountID;
 		$request = encrypts($plain);
@@ -45,13 +36,7 @@ function explodeKeyword($text)
 		$curlURL = $domain."?keyworddetails=balance&profileID=$profileID&AccountID=".$AccountID ;
 	}	
 	 
-	if (strpos($text, 'equity') !== false || strpos($text, 'total equity') !== false ){
-		$plain = "equity|".$profileID."|" .$AccountID;
-		$request = encrypts($plain);
-		$post = strtr($request, '+/=', '-_,' );
-		$curlURL = $domain."?data=".$post;
-		$curlURL = $domain."?keyworddetails=equity&profileID=$profileID&AccountID=".$AccountID ;
-	}	
+		
   
 	if ( in_array("switch",$gettextArray) && in_array("account",$gettextArray)  ) {
 		$plain = "switchaccount|".$profileID."|" .$AccountID;
