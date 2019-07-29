@@ -210,7 +210,11 @@ if($method == 'POST'){
 		//$check->displayText = "Hi, Nice to meet you";
 		//$check->source = "webhook-echo-sample";
 			break;
-		
+		case 'Tradesocio':
+		$check->fulfillmentText = "Welcome to the Tradesocio mobile apps.";
+		//$check->displayText = "Hi, Nice to meet you";
+		//$check->source = "webhook-echo-sample";
+			break;
 		default:
 		$check->fulfillmentText = explodeKeyword($text) ;
 		//$check->displayText = "Hi, Nice to meet you";
@@ -222,7 +226,7 @@ if($method == 'POST'){
 }
 else
 {
-	echo "Method not allowed.....";
+	echo "Method not allowedss";
 }
 
 
