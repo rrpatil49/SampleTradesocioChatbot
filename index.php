@@ -18,9 +18,9 @@ function explodeKeyword($text)
 	{
 		$AccountID = $getBalanceArray[count($getBalanceArray)-1];
 		//echo count($getBalanceArray);
-		//echo "<pre>";print_r($getBalanceArray);
+		
 	}
-	
+	//echo "<pre>";print_r($getBalanceArray);
 	$keyword  = "balance";
 	 
 	$gettextArray = explode(" ",$text);
@@ -36,7 +36,7 @@ function explodeKeyword($text)
 		$curlURL = $domain."?keyworddetails=balance&profileID=$profileID&AccountID=".$AccountID ;
 	}	
 	 
-	if (strpos($text, 'equity') !== false){
+	if (strpos($text, 'equity') !== false || strpos($text, 'total equity') !== false ){
 		$plain = "equity|".$profileID."|" .$AccountID;
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
@@ -60,7 +60,7 @@ function explodeKeyword($text)
 	  $curlURL = $domain."?keyworddetails=switchaccount&profileID=$profileID&AccountID=".$AccountID ;
 	}
 	
-	if (strpos($text, 'allocations') !== false && strpos($text, 'active') !== false){
+	if ((strpos($text, 'allocations') !== false && strpos($text, 'active') !== false)|| (strpos($text, 'allocation') !== false)){
 		$plain = "activeallocations|".$profileID."|" .$AccountID;
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
@@ -68,7 +68,7 @@ function explodeKeyword($text)
 		$curlURL = $domain."?keyworddetails=activeallocations&profileID=$profileID&AccountID=".$AccountID;
 	}	
 	 
-	if (strpos($text, 'summary') !== false) {
+	if (strpos($text, 'summary') !== false || strpos($text, 'open summary') !== false || strpos($text, 'open portfolio') !== false  || strpos($text, 'portfolio') !== false) {
 		$plain = "mysummary|".$profileID."|" .$AccountID;
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
@@ -76,6 +76,14 @@ function explodeKeyword($text)
 		$curlURL = $domain."?keyworddetails=mysummary&profileID=$profileID&AccountID=".$AccountID;
 	}
   
+	if (strpos($text, 'account') !== false) {
+		$plain = "setaccount|".$profileID."|" .$AccountID. "|" .$text;
+		$request = encrypts($plain);
+		$post = strtr($request, '+/=', '-_,' );
+		$curlURL = $domain."?data=".$post;
+		$curlURL = $domain."?text=".$text."&keyworddetails=setaccount&profileID=$profileID&AccountID=".$AccountID;
+	}
+	
 	if (strpos($text, 'option') !== false) {
 		$plain = "setoption|".$profileID."|" .$AccountID. "|" .$text;
 		$request = encrypts($plain);
@@ -84,7 +92,7 @@ function explodeKeyword($text)
 		$curlURL = $domain."?text=".$text."&keyworddetails=setoption&profileID=$profileID&AccountID=".$AccountID;
 	}
 	
-	if (strpos($text, 'open') !== false) {
+	if (strpos($text, 'open') !== false  || strpos($text, 'open trade') !== false || strpos($text, 'open position') !== false) {
 		$plain = "openposition|".$profileID."|" .$AccountID;
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
@@ -92,7 +100,7 @@ function explodeKeyword($text)
 		$curlURL = $domain."?keyworddetails=openposition&profileID=$profileID&AccountID=".$AccountID;
 	}	
 	
-	if (strpos($text, 'close') !== false) {
+	if (strpos($text, 'close') !== false || strpos($text, 'close trade') !== false || strpos($text, 'close position') !== false) {
 		$plain = "closedposition|".$profileID."|" .$AccountID;
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
@@ -100,7 +108,7 @@ function explodeKeyword($text)
 		$curlURL = $domain."?keyworddetails=closedposition&profileID=$profileID&AccountID=".$AccountID;
 	}
 	
-	if (strpos($text, 'dd') !== false || strpos($text, 'drawdown') !== false){
+	if (strpos($text, 'dd') !== false || strpos($text, 'drawdown') !== false  || strpos($text, 'max drawdown') !== false){
 		$plain = "maxdd|".$profileID."|" .$AccountID;
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
@@ -108,7 +116,7 @@ function explodeKeyword($text)
 		$curlURL = $domain."?keyworddetails=maxdd&profileID=$profileID&AccountID=".$AccountID;
 	}	
 	
-	if (strpos($text, 'roi') !== false || strpos($text, 'return') !== false) {
+	if (strpos($text, 'roi') !== false || strpos($text, 'return') !== false  || strpos($text, 'investment return') !== false  || strpos($text, 'total returns') !== false) {
 		$plain = "returnofinvestment|".$profileID."|" .$AccountID;
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
@@ -116,7 +124,7 @@ function explodeKeyword($text)
 		$curlURL = $domain."?keyworddetails=returnofinvestment&profileID=$profileID&AccountID=".$AccountID;
 	}	
 	
-	if (strpos($text, 'available') !== false && strpos($text, 'invested') !== false){
+	if ((strpos($text, 'available') !== false && strpos($text, 'invested') !== false)|| (strpos($text, 'available') !== false && strpos($text, 'amount')){
 		$plain = "availableinvested|".$profileID."|" .$AccountID;
 		$request = encrypts($plain);
 		$post = strtr($request, '+/=', '-_,' );
