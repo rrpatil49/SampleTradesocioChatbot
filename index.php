@@ -27,6 +27,15 @@ function explodeKeyword($text)
 	
 	//echo $plain = "balance|".$profileID."|" .$AccountID;
 	
+	if (strpos($text, 'trading') !== false) {
+		$plain = "Tradesocio|".$profileID."|" .$AccountID;
+		$request = encrypts($plain);
+		$post = strtr($request, '+/=', '-_,' );
+		$curlURL = $domain."?data=".$post;
+		
+		$curlURL = $domain."?keyworddetails=Tradesocio&profileID=$profileID&AccountID=".$AccountID ;
+	}
+	
 	if (strpos($text, 'balance') !== false) {
 		$plain = "balance|".$profileID."|" .$AccountID;
 		$request = encrypts($plain);
